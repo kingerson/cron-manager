@@ -1,0 +1,60 @@
+
+<section class="realplaza-login">
+    <div class="realplaza-box-login">
+        <div class="realplaza-wrap-login">
+            <div class="realplaza-form-login">
+                <div class="realplaza-logo-login">
+                    <img src="../../../../../assets/images/logotipo-vertical-positivo.svg" alt="Logo">
+                </div>
+                <div class="realplaza-welcome-login">
+                    <h1>Iniciar sesión</h1>
+                </div>
+                <form #loginForm="ngForm" class="login-form" (ngSubmit)="submitForm()">
+                    <div class="realplaza-body-login">
+                        <div class="realplaza-control-login">
+                            <input type="text" name="username" [(ngModel)]="user.username"
+                                class="realplaza-control-input username" />
+                            <label class="realplaza-control-label"
+                                [ngClass]="{'is-floating': user.username}">Usuario</label>
+                            <i nz-icon nzType="user" nzTheme="outline"></i>
+                        </div>
+                        <div class="realplaza-control-login">
+                            <input type="password" name="password" [(ngModel)]="user.password"
+                                class="realplaza-control-input password" />
+                            <label class="realplaza-control-label"
+                                [ngClass]="{'is-floating': user.password}">Contraseña</label>
+                            <i nz-icon nzType="lock" nzTheme="outline"></i>
+                        </div>
+                        <div class="realplaza-forgot-login">
+                            <a href="#" class="realplaza-forgot-password">¿Olvidaste la contraseña?</a>
+                        </div>
+                        <div class="realplaza-access-login">
+                            <button class="realplaza-button-login">Iniciar sesión</button>
+                        </div>
+                    </div>
+                    <div class="realplaza-footer-login">
+  
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="realplaza-box-carousel">
+        <nz-carousel nzAutoPlay>
+            <div nz-carousel-content>
+                <img src="../../../../../assets/images/grupo_1.jpg" alt="">
+            </div>
+            <div nz-carousel-content>
+                <img src="../../../../../assets/images/grupo_2.jpg" alt="">
+            </div>
+            <div nz-carousel-content>
+                <img src="../../../../../assets/images/grupo_3.jpg" alt="">
+            </div>
+            <div nz-carousel-content>
+                <img src="../../../../../assets/images/grupo_4.jpg" alt="">
+            </div>
+        </nz-carousel>
+    </div>
+  </section>
+  
+  

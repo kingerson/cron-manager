@@ -1,0 +1,29 @@
+<div [formGroup]="parent.control" style="display: inline;">
+    <nz-form-label *ngIf="!hideHours">horas</nz-form-label>
+    <nz-select *ngIf="!hideHours" formControlName="hours" >
+        <nz-option *ngFor="let hour of hours" [nzLabel]="hour" [nzValue]="hour">
+        </nz-option>
+    </nz-select>
+
+    &nbsp;
+    <nz-form-label *ngIf="!hideMinutes">minutos</nz-form-label>
+    <nz-select *ngIf="!hideMinutes" formControlName="minutes" >
+        <nz-option *ngFor="let minute of minutes" [nzLabel]="minute" [nzValue]="minute">
+        </nz-option>
+    </nz-select>
+
+    &nbsp;
+    <nz-form-label *ngIf="!hideSeconds">segundos</nz-form-label>
+    <nz-select *ngIf="!hideSeconds" formControlName="seconds" >
+        <nz-option *ngFor="let second of seconds" [nzLabel]="second" [nzValue]="second">
+        </nz-option>
+    </nz-select>
+
+    &nbsp;
+    <nz-form-label *ngIf="!use24HourTime">.</nz-form-label>
+    <nz-select *ngIf="!use24HourTime" formControlName="hourType" >
+        <nz-option *ngFor="let hourType of hourTypes" [nzLabel]="hourType" [nzValue]="hourType">
+        </nz-option>
+    </nz-select>
+
+</div>

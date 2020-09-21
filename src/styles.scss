@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Publico Banner Ultra";
+  src: url(assets/fonts/publico-banner/publico-banner-ultra.ttf);
+}
+
+@font-face {
+  font-family: "Circular Pro Black";
+  src: url(assets/fonts/circular-pro/circular-pro-black.ttf);
+}
+
+@font-face {
+  font-family: "Circular Pro Bold";
+  src: url(assets/fonts/circular-pro/circular-pro-bold.ttf);
+}
+
+@font-face {
+  font-family: "Circular Pro Medium";
+  src: url(assets/fonts/circular-pro/circular-pro-medium.ttf);
+}
+
+@font-face {
+  font-family: "Circular Pro Book";
+  src: url(assets/fonts/circular-pro/circular-pro-book.ttf);
+}
+
+body {
+  font-family: "Circular Pro Medium", sans-serif;
+}

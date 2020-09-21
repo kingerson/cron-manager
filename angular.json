@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "cron-maker": {
@@ -25,10 +25,16 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/theme.less"
             ],
             "scripts": []
           },
@@ -60,6 +66,14 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "hmr": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.hmr.ts"
+                }
+              ]
             }
           }
         },
@@ -71,6 +85,10 @@
           "configurations": {
             "production": {
               "browserTarget": "cron-maker:build:production"
+            },
+            "hmr": {
+              "browserTarget": "cron-maker:build:hmr",
+              "hmr": true
             }
           }
         },
@@ -123,6 +141,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "cron-maker"
+    }
+  },
+  "defaultProject": "cron-maker",
+  "cli": {
+    "analytics": false
+  }
 }

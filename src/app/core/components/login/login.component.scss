@@ -1,0 +1,137 @@
+.realplaza-login {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  .realplaza-box-login {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    .realplaza-wrap-login {
+      padding: 20px 40px;
+      width: 100%;
+      .realplaza-form-login {
+        .realplaza-logo-login {
+          text-align: center;
+          img {
+            width: 100%;
+            max-width: 125px;
+          }
+        }
+        .realplaza-welcome-login {
+          padding-top: 60px;
+          h1 {
+            color: #7300e0;
+            font-weight: bold;
+            text-transform: uppercase;
+          }
+          h3 {
+            font-family: 'Circular Pro Book', sans-serif;
+            margin-bottom: 0;
+            padding-top: 5px;
+          }
+        }
+        .realplaza-body-login {
+          padding-top: 20px;
+          .realplaza-control-login {
+            position: relative;
+            &:focus-within::before {
+              content: '';
+              background: #7300e0;
+              height: 100%;
+              position: absolute;
+              width: 2px;
+              left: 0;
+              top: 0;
+            }
+            .realplaza-control-label {
+              position: absolute;
+              top: 50%;
+              left: 40px;
+              margin-top: -12px;
+              font-size: 15px;
+              color: #d9d9d9;
+              transition: all 0.25s ease-in-out;
+              pointer-events: none;
+              &.is-floating {
+                top: 6px;
+                left: 15px;
+                font-size: 10px;
+                text-transform: uppercase;
+                background: #fffffd;
+                padding: 0 5px;
+              }
+            }
+            .realplaza-control-input {
+              border: 1px solid #dcd0e0;
+              outline: none;
+              display: block;
+              width: 100%;
+              padding: 15px 15px 15px 40px;
+              &.username {
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px;
+              }
+              &.password {
+                margin-top: -1px;
+                border-bottom-left-radius: 3px;
+                border-bottom-right-radius: 3px;
+              }
+              &:focus + .realplaza-control-label {
+                top: 6px;
+                left: 15px;
+                font-size: 10px;
+                text-transform: uppercase;
+                background: #fffffd;
+                padding: 0 5px;
+              }
+            }
+            i {
+              position: absolute;
+              top: 17px;
+              left: 15px;
+              font-size: 15px;
+              color: #d9d9d9;
+            }
+          }
+          .realplaza-forgot-login {
+            text-align: right;
+            padding-top: 20px;
+            .realplaza-forgot-password {
+              color: #7300e0;
+              font-size: 14px;
+            }
+          }
+          .realplaza-access-login {
+            padding-top: 20px;
+            .realplaza-button-login {
+              width: 100%;
+              background: #7300e0;
+              color: #fff;
+              padding: 15px;
+              text-transform: uppercase;
+              border: none;
+              cursor: pointer;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .realplaza-box-carousel {
+    width: 60%;
+    [nz-carousel-content] {
+      height: 100%;
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 768px) {
+    @content;
+  }
+}

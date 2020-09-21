@@ -1,0 +1,230 @@
+<!-- Tabs -->
+<nz-form-item class="mt-5">
+    <nz-tabset (nzSelectChange)="onTabFocus([$event])" [nzSelectedIndex]="tabIndex">
+        <nz-tab [nzTitle]="minutesTemplate" *ngIf="!options.hideMinutesTab">
+            <ng-template #minutesTemplate> <i nz-icon [nzType]="'bell'"></i>Minutos</ng-template>
+            <div nz-row [formGroup]="minutesForm">
+                <div nz-col nzSpan="24" [nzSm]="24" [nzXs]="24">
+                    <nz-form-item>
+                        <nz-form-label>Cada</nz-form-label>
+                        <nz-select formControlName="minutes" >
+                            <nz-option *ngFor="let minute of selectOptions.minutes" [nzLabel]="minute" [nzValue]="minute">
+                            </nz-option>
+                        </nz-select>&nbsp;
+                        <nz-form-label>minuto (s)</nz-form-label>
+                        <nz-form-label *ngIf="!options.hideSeconds" >en segundo</nz-form-label>
+                        <nz-select *ngIf="!options.hideSeconds" formControlName="seconds" >
+                            <nz-option *ngFor="let second of selectOptions.seconds" [nzLabel]="second" [nzValue]="second">
+                            </nz-option>
+                        </nz-select>
+                    </nz-form-item>
+                </div>
+            </div>    
+        </nz-tab>
+        <nz-tab [nzTitle]="hourlyTemplate" *ngIf="!options.hideHourlyTab">
+            <ng-template #hourlyTemplate> <i nz-icon [nzType]="'container'"></i>Cada Hora</ng-template>
+            <div nz-row [formGroup]="hourlyForm">
+                <div nz-col nzSpan="24" [nzSm]="24" [nzXs]="24">
+                    <nz-form-item>
+                        <nz-form-label>Cada</nz-form-label>
+                        <nz-select formControlName="hours" >
+                            <nz-option *ngFor="let hour of selectOptions.hours" [nzLabel]="hour" [nzValue]="hour">
+                            </nz-option>
+                        </nz-select>&nbsp;
+                        <nz-form-label>hora (s) en minuto</nz-form-label>
+                        <nz-select formControlName="minutes" >
+                            <nz-option *ngFor="let minute of selectOptions.fullMinutes" [nzLabel]="minute" [nzValue]="minute">
+                            </nz-option>
+                        </nz-select>&nbsp;
+                        <nz-form-label *ngIf="!options.hideSeconds">y segundo</nz-form-label>
+                        <nz-select *ngIf="!options.hideSeconds" formControlName="seconds" >
+                            <nz-option *ngFor="let second of selectOptions.seconds" [nzLabel]="second" [nzValue]="second">
+                            </nz-option>
+                        </nz-select>
+                    </nz-form-item>
+                </div>
+            </div>    
+        </nz-tab>
+        <nz-tab [nzTitle]="dailyTemplate" *ngIf="!options.hideDailyTab">
+            <ng-template #dailyTemplate> <i nz-icon [nzType]="'container'"></i>Diario</ng-template>
+            <div nz-row [formGroup]="dailyForm">
+                <nz-radio-group formControlName="subTab">
+                    <div nz-col nzSpan="24" [nzSm]="24" [nzXs]="24">
+                        <label nz-radio nzValue="everyDays">Cada</label>
+                        <div formGroupName="everyDays" style="display: inline;">
+                            <nz-select formControlName="days">
+                                <nz-option *ngFor="let monthDay of selectOptions.monthDays" [nzLabel]="monthDay" [nzValue]="monthDay">
+                                </nz-option>
+                            </nz-select>&nbsp;
+                            <nz-form-label>día (s) en</nz-form-label>
+                        </div>
+                        <app-timepicker  
+                            formGroupName="everyDays"  
+                            [use24HourTime]="options.use24HourTime"
+                            [hideSeconds]="options.hideSeconds">
+                        </app-timepicker>
+                    </div>
+                    <div nz-col nzSpan="24" [nzSm]="24" [nzXs]="24">
+                        <label nz-radio nzValue="everyWeekDay" style="margin-right: 0px;">Todos los días laborables en:</label>
+                        <app-timepicker  
+                            formGroupName="everyWeekDay"  
+                            [use24HourTime]="options.use24HourTime"
+                            [hideSeconds]="options.hideSeconds">
+                        </app-timepicker>
+                    </div>
+                </nz-radio-group>
+            </div>
+        </nz-tab>
+        <nz-tab [nzTitle]="weekly" *ngIf="!options.hideWeeklyTab">
+            <ng-template #weekly> <i nz-icon [nzType]="'container'"></i>Semanal</ng-template>
+            <div nz-row [formGroup]="weeklyForm">
+                <div nz-col nzSpan="24" [nzSm]="24" [nzXs]="24">
+                    <nz-checkbox-wrapper style="width: 100%;">
+                        <div nz-row>
+                          <div nz-col nzSpan="8"><label nz-checkbox nzValue="MON" formControlName="MON">Lunes</label></div>
+                          <div nz-col nzSpan="8"><label nz-checkbox nzValue="TUE" formControlName="TUE">Martes</label></div>
+                          <div nz-col nzSpan="8"><label nz-checkbox nzValue="WED" formControlName="WED">Miercoles</label></div>
+                          <div nz-col nzSpan="8"><label nz-checkbox nzValue="THU" formControlName="THU">Jueves</label></div>
+                          <div nz-col nzSpan="8"><label nz-checkbox nzValue="FRI" formControlName="FRI">Viernes</label></div>
+                          <div nz-col nzSpan="8"><label nz-checkbox nzValue="SAT" formControlName="SAT">Sábado</label></div>
+                          <div nz-col nzSpan="8"><label nz-checkbox nzValue="SUN" formControlName="SUN">Domingo</label></div>
+                        </div>
+                      </nz-checkbox-wrapper>
+                </div>
+                <div nz-col nzSpan="24" [nzSm]="24" [nzXs]="24">
+                    <nz-form-item>
+                        <nz-form-label>a</nz-form-label>
+                        <app-timepicker  
+                            [formGroup]="weeklyForm"
+                            [use24HourTime]="options.use24HourTime"
+                            [hideSeconds]="options.hideSeconds">
+                        </app-timepicker>
+                    </nz-form-item>
+                </div>
+            </div>
+        </nz-tab>
+        <nz-tab [nzTitle]="monthly" *ngIf="!options.hideWeeklyTab">
+            <ng-template #monthly> <i nz-icon [nzType]="'container'"></i>Mensual</ng-template>
+            <div nz-row [formGroup]="monthlyForm">
+                <nz-radio-group formControlName="subTab">
+                    <div nz-col nzSpan="24" [nzSm]="24" [nzXs]="24">
+                        <label nz-radio nzValue="specificDay">Sobre el :</label>
+                        <div formGroupName="specificDay" style="display: inline;">
+                            <nz-select formControlName="day" class="option-brigger">
+                                <nz-option *ngFor="let monthDaysWithLast of selectOptions.monthDaysWithLasts" [nzLabel]="monthDayDisplay(monthDaysWithLast)" [nzValue]="monthDaysWithLast">
+                                </nz-option>
+                            </nz-select>&nbsp;
+                            <nz-form-label>de cada</nz-form-label>
+                            <nz-select formControlName="months">
+                                <nz-option *ngFor="let month of selectOptions.months" [nzLabel]="month" [nzValue]="month">
+                                </nz-option>
+                            </nz-select>&nbsp;
+                            <nz-form-label>mes(s) en</nz-form-label>
+                            <app-timepicker  
+                                [disabled]="disabled"
+                                [formGroup]="monthlyForm.controls.specificDay"
+                                [use24HourTime]="options.use24HourTime"
+                                [hideSeconds]="options.hideSeconds">
+                        </app-timepicker>
+                        </div>
+                    </div>
+                    <div nz-col nzSpan="24" [nzSm]="24" [nzXs]="24">
+                        <label nz-radio nzValue="specificWeekDay" style="margin-right: 0px;">Sobre el :</label>
+                        <div formGroupName="specificWeekDay" style="display: inline;">
+                            <nz-select formControlName="monthWeek" class="option-brigger">
+                                <nz-option *ngFor="let monthWeek of selectOptions.monthWeeks" [nzLabel]="monthWeekDisplay(monthWeek)" [nzValue]="monthWeek">
+                                </nz-option>
+                            </nz-select>&nbsp;
+                            <nz-select formControlName="day" class="option-brigger">
+                                <nz-option *ngFor="let day of selectOptions.days" [nzLabel]="dayDisplay(day)" [nzValue]="day">
+                                </nz-option>
+                            </nz-select>&nbsp;
+                            <nz-form-label>de cada</nz-form-label>&nbsp;
+                            <nz-select formControlName="months">
+                                <nz-option *ngFor="let month of selectOptions.months" [nzLabel]="month" [nzValue]="month">
+                                </nz-option>
+                            </nz-select>&nbsp;
+                            <nz-form-label>mes(s) en</nz-form-label>&nbsp;
+                            <app-timepicker  
+                                [formGroup]="monthlyForm.controls.specificWeekDay"
+                                [use24HourTime]="options.use24HourTime"
+                                [hideSeconds]="options.hideSeconds">
+                            </app-timepicker>
+                        </div>
+                    </div>
+                </nz-radio-group>
+            </div>
+        </nz-tab>
+        <nz-tab [nzTitle]="yearly" *ngIf="!options.hideYearlyTab">
+            <ng-template #yearly> <i nz-icon [nzType]="'container'"></i>Anual</ng-template>
+            <div nz-row [formGroup]="yearlyForm">
+                <nz-radio-group formControlName="subTab">
+                    <div nz-col nzSpan="24" [nzSm]="24" [nzXs]="24">
+                        <label nz-radio nzValue="specificMonthDay">Cada :</label>
+                        <div formGroupName="specificMonthDay" style="display: inline;">
+                            <nz-select formControlName="day" class="option-brigger">
+                                <nz-option *ngFor="let monthDaysWithLast of selectOptions.monthDaysWithLasts" [nzLabel]="monthDayDisplay(monthDaysWithLast)" [nzValue]="monthDaysWithLast">
+                                </nz-option>
+                            </nz-select>&nbsp;
+                            <nz-form-label>sobre el</nz-form-label>
+                            <nz-select formControlName="month" class="option-brigger">
+                                <nz-option *ngFor="let month of selectOptions.months" [nzLabel]="monthDisplay(month)" [nzValue]="month">
+                                </nz-option>
+                            </nz-select>&nbsp;
+                            <nz-form-label>a</nz-form-label>
+                            <app-timepicker  
+                                [disabled]="disabled"
+                                [formGroup]="yearlyForm.controls.specificMonthDay"
+                                [use24HourTime]="options.use24HourTime"
+                                [hideSeconds]="options.hideSeconds">
+                        </app-timepicker>
+                        </div>
+                    </div>
+                    <div nz-col nzSpan="24" [nzSm]="24" [nzXs]="24">
+                        <label nz-radio nzValue="specificMonthWeek" style="margin-right: 0px;">Sobre el :</label>
+                        <div formGroupName="specificMonthWeek" style="display: inline;">
+                            <nz-select formControlName="monthWeek" class="option-brigger">
+                                <nz-option *ngFor="let monthWeek of selectOptions.monthWeeks" [nzLabel]="monthWeekDisplay(monthWeek)" [nzValue]="monthWeek">
+                                </nz-option>
+                            </nz-select>&nbsp;
+                            <nz-select formControlName="day" class="option-brigger">
+                                <nz-option *ngFor="let day of selectOptions.days" [nzLabel]="dayDisplay(day)" [nzValue]="day">
+                                </nz-option>
+                            </nz-select>&nbsp;
+                            <nz-form-label>de</nz-form-label>&nbsp;
+                            <nz-select formControlName="month" class="option-brigger">
+                                <nz-option *ngFor="let month of selectOptions.months" [nzLabel]="monthDisplay(month)" [nzValue]="month">
+                                </nz-option>
+                            </nz-select>&nbsp;
+                            <nz-form-label>a</nz-form-label>&nbsp;
+                            <app-timepicker  
+                                [disabled]="disabled"
+                                [formGroup]="yearlyForm.controls.specificMonthWeek"
+                                [use24HourTime]="options.use24HourTime"
+                                [hideSeconds]="options.hideSeconds">
+                            </app-timepicker>
+                        </div>
+                    </div>
+                </nz-radio-group>
+            </div>
+        </nz-tab>
+        <nz-tab [nzTitle]="advanced" *ngIf="!options.hideAdvancedTab">
+            <ng-template #advanced> <i nz-icon [nzType]="'container'"></i>Avanzado</ng-template>
+            <div nz-row [formGroup]="advancedForm">
+                <div nz-col nzSpan="24" [nzSm]="24" [nzXs]="24">
+                    <nz-form-item>
+                        <nz-form-label>Expresión Cron </nz-form-label>
+                        <input nz-input placeholder="Expresión Cron" formControlName="expression" />
+                    </nz-form-item>
+                </div>
+            </div>   
+        </nz-tab>
+    </nz-tabset>
+</nz-form-item>
+
+<div>
+    {{cron_string}}
+</div>
+<div>
+    {{cron}}
+</div>

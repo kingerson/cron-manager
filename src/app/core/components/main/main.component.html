@@ -1,0 +1,78 @@
+<section class="realplaza-layout">
+    <header class="realplaza-header">
+        <a class="realplaza-logo">
+            <img src="../../../assets/images/logotipo-responsive-uno-negativo.svg" alt="Logo">
+        </a>
+        <h1 class="realplaza-titulo">
+            Sistema software integrador
+        </h1>
+        <a class="realplaza-logout" (click)="logout()">
+            <i nz-icon nzType="logout" nzTheme="outline"></i> <span>Cerrar sesión</span>
+        </a>
+    </header>
+    <div class="realplaza-wrap-content">
+        <a class="realplaza-button-nav" (click)="toggleCollapsed()" [ngClass]="{'open': !isCollapsed}">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <aside class="realplaza-menu" [ngStyle]="{'width':isCollapsed ? '60px' : '260px' }">
+            <nz-sider nzWidth="260px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed">
+                <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+                    <li nz-submenu nzTitle="Navigation one" nzIcon="mail">
+                        <ul>
+                            <li nz-menu-item>
+                                <i nz-icon nzType="right" nzTheme="outline"></i>
+                                <span>Admin</span>
+                                <a [routerLink]="'/admin'">
+                                    
+                                </a>
+                               
+                            </li>
+                            <li nz-menu-item>
+                                <i nz-icon nzType="right" nzTheme="outline"></i>
+                                <span>Home</span>
+                                <a [routerLink]="'/home'">
+                                    
+                                </a>
+                            </li>
+                            <li nz-menu-item>
+                                <i nz-icon nzType="right" nzTheme="outline"></i>
+                                <span>Item Component</span>
+                                <a [routerLink]="'/item'">
+                                    
+                                </a>
+                            </li>
+                            <li nz-submenu nzTitle="Opción 4" nzIcon="right">
+                                <ul>
+                                    <li nz-menu-item routerLink="/dashboard"><i nz-icon nzType="right"
+                                            nzTheme="outline"></i>
+                                        <span>Opción 4</span></li>
+                                    <li nz-menu-item><i nz-icon nzType="right" nzTheme="outline"></i>
+                                        <span>Opción 5</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li nz-submenu nzTitle="Navigation two" nzIcon="user">
+                        <ul>
+                            <li nz-menu-item>
+                                <i nz-icon nzType="right" nzTheme="outline"></i>
+                                <span>Opción 6</span>
+                            </li>
+                            <li nz-menu-item><i nz-icon nzType="right" nzTheme="outline"></i>
+                                <span>Opción 7</span></li>
+                        </ul>
+                    </li>
+                    <li nz-menu-item nz-tooltip nzPlacement="right" [nzTitle]="isCollapsed ? 'Configuración' : ''">
+                        <i nz-icon nzType="setting"></i>
+                        <span routerLink="/dashboard">Configuración</span>
+                    </li>
+                </ul>
+            </nz-sider>
+        </aside>
+        <div class="realplaza-content" [ngStyle]="{'padding-left': isCollapsed ? '90px' : '290px'}">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</section>

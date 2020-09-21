@@ -1,0 +1,59 @@
+<form nz-form>
+    <div nz-row>
+        <div nz-col nzSpan="24">
+            <h2>Item Component</h2>
+            <nz-form-item>
+                <nz-form-label nzFor="name">Nombre</nz-form-label>
+                <nz-form-control>
+                    <input nz-input name="name" type="text" id="name" [(ngModel)]="name"
+                        placeholder="Nombre" nzSize="large" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label nzFor="watts">Watts</nz-form-label>
+                <nz-form-control>
+                    <input nz-input name="watts" type="number" id="watts" [(ngModel)]="watts"
+                        placeholder="Watts" nzSize="large" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label nzFor="kilowatts">Kilo Watts</nz-form-label>
+                <nz-form-control>
+                    <input nz-input name="kilowatts" type="number" id="kilowatts" [(ngModel)]="kilowatts"
+                        placeholder="Kilo Watts" nzSize="large" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <button nz-button nzType="primary" nzBlock (click)="createItemComponent()" [nzSize]="'large'">Guardar</button>
+            </nz-form-item>
+        </div>
+    </div>
+</form>
+
+
+<br><br>
+
+<h1>Listado Item Component</h1>
+
+<nz-table #basicTable [nzData]="dataSet">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Watts</th>
+        <th>Kilo Watts</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{data.name}}</td>
+        <td>{{data.wattsXm2}}</td>
+        <td>{{data.kiloWatts}}</td>
+        <td>
+          <a (click)="getItemComponentById(data.itemComponentId)">Editar</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="deleteItemComponent(data.itemComponentId)">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
